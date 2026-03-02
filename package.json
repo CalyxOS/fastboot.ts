@@ -3,16 +3,16 @@
   "version": "0.0.15",
   "description": "Fastboot using WebUSB",
   "main": "src/index.ts",
+  "type": "module",
   "scripts": {
     "type-check": "tsc --noEmit",
-    "build": "tsc --noEmit && esbuild src/index.ts --bundle --sourcemap --format=esm --platform=browser --target=chrome132 --outfile=dist/fastboot.js"
+    "build": "tsc"
   },
   "keywords": [],
   "author": "Ziggy, Calyx Institute",
   "license": "MIT",
   "devDependencies": {
     "@types/w3c-web-usb": "^1.0.10",
-    "esbuild": "^0.27.2",
     "prettier": "^3.5.3",
     "typescript": "^5.8.3"
   },
