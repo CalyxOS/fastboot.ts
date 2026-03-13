@@ -215,4 +215,4 @@ export const IMAGES = [
     optional: true,
     type: "Normal",
   },
-]
+];

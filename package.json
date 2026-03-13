@@ -2,9 +2,12 @@
   "name": "@aepyornis/fastboot.ts",
   "version": "0.0.15",
   "description": "Fastboot using WebUSB",
+  "keywords": [],
+  "license": "MIT",
+  "author": "Ziggy, Calyx Institute",
+  "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
-  "type": "module",
   "scripts": {
     "lint": "oxlint --type-aware",
     "lint:fix": "oxlint --type-aware --fix",
@@ -13,17 +16,14 @@
     "type-check": "tsc --noEmit",
     "build": "tsc"
   },
-  "keywords": [],
-  "author": "Ziggy, Calyx Institute",
-  "license": "MIT",
+  "dependencies": {
+    "@zip.js/zip.js": "^2.8.23"
+  },
   "devDependencies": {
     "@types/w3c-web-usb": "^1.0.13",
     "oxfmt": "^0.40.0",
     "oxlint": "^1.55.0",
     "oxlint-tsgolint": "^0.16.0",
     "typescript": "^5.9.3"
-  },
-  "dependencies": {
-    "@zip.js/zip.js": "^2.8.23"
   }
 }
