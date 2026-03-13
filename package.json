@@ -5,6 +5,8 @@
   "main": "src/index.ts",
   "type": "module",
   "scripts": {
+    "lint": "oxlint --type-aware",
+    "lint:fix": "oxlint --type-aware --fix",
     "type-check": "tsc --noEmit",
     "build": "tsc"
   },
@@ -13,6 +15,8 @@
   "license": "MIT",
   "devDependencies": {
     "@types/w3c-web-usb": "^1.0.13",
+    "oxlint": "^1.55.0",
+    "oxlint-tsgolint": "^0.16.0",
     "prettier": "^3.8.1",
     "typescript": "^5.9.3"
   },
