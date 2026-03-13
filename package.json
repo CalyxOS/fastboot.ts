@@ -2,7 +2,8 @@
   "name": "@aepyornis/fastboot.ts",
   "version": "0.0.15",
   "description": "Fastboot using WebUSB",
-  "main": "src/index.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "type": "module",
   "scripts": {
     "lint": "oxlint --type-aware",
