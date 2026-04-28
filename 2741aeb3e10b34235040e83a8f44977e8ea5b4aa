@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "b9a3f80f_f30d4974",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000084
+      },
+      "writtenOn": "2026-04-28T15:30:33Z",
+      "side": 1,
+      "message": "I\u0027m cool with replacing prettier with oxfmt. However, please set the semi: true configuration with oxfmt as was set with prettier.",
+      "revId": "2741aeb3e10b34235040e83a8f44977e8ea5b4aa",
+      "serverId": "35266860-6252-469c-a67d-185064479fc0"
+    }
+  ]
+}
