@@ -16,6 +16,24 @@
       "message": "I\u0027m cool with replacing prettier with oxfmt. However, please set the semi: true configuration with oxfmt as was set with prettier.",
       "revId": "2741aeb3e10b34235040e83a8f44977e8ea5b4aa",
       "serverId": "35266860-6252-469c-a67d-185064479fc0"
+    },
+    {
+      "unresolved": true,
+      "key": {
+        "uuid": "9aeae1c6_35fc5f5e",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000084
+      },
+      "writtenOn": "2026-04-28T15:37:46Z",
+      "side": 1,
+      "message": "sorry meant to say please use semi: false (the default is true). It\u0027s the only linter config I\u0027m picky about :)",
+      "parentUuid": "b9a3f80f_f30d4974",
+      "revId": "2741aeb3e10b34235040e83a8f44977e8ea5b4aa",
+      "serverId": "35266860-6252-469c-a67d-185064479fc0"
     }
   ]
 }
