@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "8f067f04_30c4345f",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000084
+      },
+      "writtenOn": "2026-04-28T15:20:58Z",
+      "side": 1,
+      "message": "tsc doesn\u0027t exactly replace esbuild here as esbuild bundles the library into a single file which I find easier to test and use. I\u0027m fine having a tsc build option, but i\u0027d prefer keeping esbuild as well.",
+      "revId": "fe2f13ef6c8250b1f5cb3d624dc02135f0a9c6d4",
+      "serverId": "35266860-6252-469c-a67d-185064479fc0"
+    }
+  ]
+}
