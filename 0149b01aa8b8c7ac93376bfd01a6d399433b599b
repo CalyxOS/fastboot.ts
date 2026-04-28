@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "94d02e62_9ade8cfe",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000084
+      },
+      "writtenOn": "2026-04-28T15:25:52Z",
+      "side": 1,
+      "message": "I do not like putting complied javascript into git. If storing versioned complied js is useful I suggest we either automatically publish the dist files via github/gitlab runners or create a dist repo (fastboot.ts-dist) with the files.",
+      "revId": "0149b01aa8b8c7ac93376bfd01a6d399433b599b",
+      "serverId": "35266860-6252-469c-a67d-185064479fc0"
+    }
+  ]
+}
