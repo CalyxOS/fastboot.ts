@@ -33,6 +33,24 @@
       "message": "Actually what was the reason of this rewrite? I am currently working on-top of the original fastboot.js fork by LineageOS and the codebase is still usable",
       "revId": "fe2f13ef6c8250b1f5cb3d624dc02135f0a9c6d4",
       "serverId": "35266860-6252-469c-a67d-185064479fc0"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "0df12c72_aa67a694",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000084
+      },
+      "writtenOn": "2026-05-08T15:30:57Z",
+      "side": 1,
+      "message": "fastboot.js is good. It uses some code from that as well.\n\nIdea was to\n\n1. better support more phones including motos\n2. run calyx\u0027s flash-all script\n3. improved API for using it from different web installers",
+      "parentUuid": "c6c43754_37e079f1",
+      "revId": "fe2f13ef6c8250b1f5cb3d624dc02135f0a9c6d4",
+      "serverId": "35266860-6252-469c-a67d-185064479fc0"
     }
   ]
 }
