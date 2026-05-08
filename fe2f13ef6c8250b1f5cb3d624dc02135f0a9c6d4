@@ -51,6 +51,24 @@
       "parentUuid": "c6c43754_37e079f1",
       "revId": "fe2f13ef6c8250b1f5cb3d624dc02135f0a9c6d4",
       "serverId": "35266860-6252-469c-a67d-185064479fc0"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "ad03768f_e68c9e90",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000210
+      },
+      "writtenOn": "2026-05-08T17:09:10Z",
+      "side": 1,
+      "message": "Going to keep working on fastboot.js rather than switch over. The current version of fastboot.ts hardcodes a lot of the moto and flash-all logic, whereas fastboot.js has a cleaner base to build on. Worth noting we also added logical partitioning support recently, which should improve device coverage more broadly.",
+      "parentUuid": "0df12c72_aa67a694",
+      "revId": "fe2f13ef6c8250b1f5cb3d624dc02135f0a9c6d4",
+      "serverId": "35266860-6252-469c-a67d-185064479fc0"
     }
   ]
 }
