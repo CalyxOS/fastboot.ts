@@ -16,6 +16,23 @@
       "message": "tsc doesn\u0027t exactly replace esbuild here as esbuild bundles the library into a single file which I find easier to test and use. I\u0027m fine having a tsc build option, but i\u0027d prefer keeping esbuild as well.",
       "revId": "fe2f13ef6c8250b1f5cb3d624dc02135f0a9c6d4",
       "serverId": "35266860-6252-469c-a67d-185064479fc0"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "c6c43754_37e079f1",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000210
+      },
+      "writtenOn": "2026-05-08T15:11:16Z",
+      "side": 1,
+      "message": "Actually what was the reason of this rewrite? I am currently working on-top of the original fastboot.js fork by LineageOS and the codebase is still usable",
+      "revId": "fe2f13ef6c8250b1f5cb3d624dc02135f0a9c6d4",
+      "serverId": "35266860-6252-469c-a67d-185064479fc0"
     }
   ]
 }
