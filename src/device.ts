@@ -94,8 +94,8 @@ export class FastbootDevice {
     await this.device.claimInterface(0)
   }
 
-  // some commands (like "flashing lock") will disconnect the device
-  // we have to re-assign this.device after it reconnects
+  // After a reboot, the USBDevice object can go stale. We have to wait
+  // for the device to appear in getDevices() and re-open it.
   async reconnect(): Promise<boolean> {
     const devices = await navigator.usb.getDevices()
     for (const device of devices) {
@@ -110,15 +110,16 @@ export class FastbootDevice {
     throw new FastbootUsbConnectionError()
   }
 
-  // The install requires reboots and it's important we pause the
-  // install and reset the usb device after it reconnects
-  async waitForReconnect(): Promise<boolean> {
+  // Try to reconnect with escalating backoff: an immediate attempt,
+  // then retries after 3s and 30s waits. Returns true on success, or
+  // false once both waits are exhausted without the device reappearing.
+  private async retryReconnect(label: string): Promise<boolean> {
     try {
-      this.logger.log("waitForReconnect try reconnect()")
+      this.logger.log(`${label} try reconnect()`)
       return await this.reconnect()
     } catch (e) {
       console.error(e)
-      this.logger.log("waitForReconnect wait 3 seconds")
+      this.logger.log(`${label} wait 3 seconds`)
       await new Promise((resolve) => setTimeout(resolve, 3000))
     }
 
@@ -126,11 +127,22 @@ export class FastbootDevice {
       return await this.reconnect()
     } catch (e) {
       if (e instanceof FastbootUsbConnectionError) {
-        this.logger.log("waitForReconnect wait 30 seconds")
+        console.error(e)
+        this.logger.log(`${label} wait 30 seconds`)
         await new Promise((resolve) => setTimeout(resolve, 30000))
       } else {
         throw e
       }
+    }
+
+    return false
+  }
+
+  // Some commands (like "flashing lock") will disconnect the device
+  // we have to wait for it to be reconnected.
+  async waitForReconnect(): Promise<boolean> {
+    if (await this.retryReconnect("waitForReconnect")) {
+      return true
     }
 
     // try once more then wait for navigator.usb connect event
@@ -156,7 +168,32 @@ export class FastbootDevice {
       }
     }
 
-    return false // TODO: Assume that return false if all else fails
+    return false
+  }
+
+  // During the install, the device reboots into fastbootd. Fastbootd
+  // mode can be considered a separate device from the perspective of
+  // WebUSB and we may have to use navigator.usb.requestDevice which
+  // requires user action and permission.
+  async waitForReconnectFastboot(userAction: () => Promise<void>): Promise<boolean> {
+    if (await this.retryReconnect("waitForReconnectFastboot")) {
+      return true
+    }
+
+    try {
+      return await this.reconnect()
+    } catch (e) {
+      console.error(e)
+      try {
+        await userAction()
+        this.logger.log("waitForReconnectFastboot after user action")
+        return await this.reconnect()
+      } catch (e) {
+        console.error(e)
+        this.logger.log("waitForReconnectFastboot reconnect() failed after user action")
+        return false
+      }
+    }
   }
 
   async getPacket(): Promise<ResponsePacket> {
