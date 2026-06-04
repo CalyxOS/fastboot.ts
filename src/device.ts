@@ -175,7 +175,7 @@ export class FastbootDevice {
   // mode can be considered a separate device from the perspective of
   // WebUSB and we may have to use navigator.usb.requestDevice which
   // requires user action and permission.
-  async waitForReconnectFastboot(userAction: () => Promise<USBDevice>): Promise<boolean> {
+  async waitForReconnectFastboot(userAction: () => Promise<unknown>): Promise<boolean> {
     if (await this.retryReconnect("waitForReconnectFastboot")) {
       return true
     }
