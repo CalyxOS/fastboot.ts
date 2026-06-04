@@ -27,7 +27,7 @@ export class FastbootClient {
   fd: FastbootDevice
   logger: Logger
   var_cache: KeyValueDict
-  reconnectUserAction: () => Promise<USBDevice>
+  reconnectUserAction: () => Promise<unknown>
 
   constructor(usb_device: USBDevice, logger: Logger = window.console) {
     this.fd = new FastbootDevice(usb_device, logger)
