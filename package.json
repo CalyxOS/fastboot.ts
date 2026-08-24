@@ -1,6 +1,6 @@
 {
-  "name": "@aepyornis/fastboot.ts",
-  "version": "0.0.17",
+  "name": "@calyxos/fastboot.ts",
+  "version": "0.0.18-rc.1",
   "description": "Fastboot using WebUSB",
   "keywords": [],
   "license": "MIT",

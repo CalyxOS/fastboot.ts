@@ -4,7 +4,7 @@ Android Fastboot implementation for WebUSB
 
 ```sh
 npm install
-npm run esbuild # or npm run tsc
+npm run build
 ```
 
     src/device.ts handles interfacing with WebUSB and implements fastboot protocol

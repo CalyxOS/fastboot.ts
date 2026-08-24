@@ -1,0 +1,68 @@
+image: node:24
+
+stages:
+  - test
+  - build
+  - publish
+
+default:
+  cache:
+    key:
+      files:
+        - package-lock.json
+    paths:
+      - .npm/
+  before_script:
+    - npm ci --cache .npm
+
+lint:
+  stage: test
+  script:
+    - npm run lint
+    - npm run type-check
+
+build:
+  stage: build
+  script:
+    - npm run build
+  artifacts:
+    paths:
+      - dist/
+    expire_in: 1 hour
+
+publish:
+  stage: publish
+  needs:
+    - job: build
+      artifacts: true
+  script:
+    - |
+      PKG_VERSION="$(node -p "require('./package.json').version")"
+      if [ "v${PKG_VERSION}" != "$CI_COMMIT_TAG" ]; then
+        echo "Tag $CI_COMMIT_TAG does not match package.json version (v${PKG_VERSION}). Bump the version and re-tag." >&2
+        exit 1
+      fi
+      # Derive tags from the prerelease identifier add "latest" for those without
+      case "$PKG_VERSION" in
+        *-*)
+          NPM_TAG="${PKG_VERSION#*-}"
+          NPM_TAG="${NPM_TAG%%.*}"
+          ;;
+        *)
+          NPM_TAG="latest"
+          ;;
+      esac
+    - |
+      # NPM_REGISTRY is a bare domain+path (no protocol):
+      # "registry.npmjs.org/" or "gitlab.example.com/api/v4/projects/123/packages/npm/".
+      # Defaults to this project's own GitLab package registry using the ephemeral CI_JOB_TOKEN.
+      # To publish elsewhere (e.g. npmjs.org), set NPM_REGISTRY and NPM_AUTH_TOKEN
+      # as CI/CD variables on that project (Settings > CI/CD > Variables) — they override the default.
+      NPM_REGISTRY="${NPM_REGISTRY:-${CI_SERVER_HOST}/api/v4/projects/${CI_PROJECT_ID}/packages/npm/}"
+      NPM_AUTH_TOKEN="${NPM_AUTH_TOKEN:-${CI_JOB_TOKEN}}"
+    - |
+      echo "//${NPM_REGISTRY}:_authToken=${NPM_AUTH_TOKEN}" > .npmrc
+      echo "registry=https://${NPM_REGISTRY}" >> .npmrc
+    - npm publish --access "${NPM_PUBLISH_ACCESS:-public}" --tag "$NPM_TAG"
+  rules:
+    - if: '$CI_COMMIT_TAG =~ /^v/'
