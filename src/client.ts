@@ -13,6 +13,8 @@ const FastbootUSBDeviceFilter = {
 
 const MotorolaProducts = ["fogo", "fogos", "bangkk", "rhode", "hawao", "devon"]
 
+const antiRollbackDowngradeRegex = /(\S+) anti rollback downgrade, (\d+) vs (\d+)/i
+
 interface Logger {
   log(message: string): void
 }
@@ -28,12 +30,14 @@ export class FastbootClient {
   logger: Logger
   var_cache: KeyValueDict
   reconnectUserAction: () => Promise<unknown>
+  rollbackDowngrade: boolean
 
   constructor(usb_device: USBDevice, logger: Logger = window.console) {
     this.fd = new FastbootDevice(usb_device, logger)
     this.logger = logger
     this.var_cache = {} as KeyValueDict
     this.reconnectUserAction = () => FastbootClient.requestUsbDevice()
+    this.rollbackDowngrade = false
   }
 
   async getVar(variable: string) {
@@ -127,7 +131,32 @@ export class FastbootClient {
     for await (const split of splitBlob(blob, max)) {
       await this.fd.transferData(split.data)
       this.logger.log(`run command flash:${partition}`)
-      await this.fd.sendCommand(`flash:${partition}`)
+
+      const packetsBefore = this.fd.session.packets.length
+      let lastPacket = await this.fd.sendCommand(`flash:${partition}`)
+
+      if (lastPacket?.message) {
+        this.logger.log(`response: ${lastPacket.message}`)
+      }
+
+      // Check for rollback index downgrade when flashing vbmeta paritions
+      if (partition.slice(0, 6) === "vbmeta") {
+        // Scan only the packets after flashing this partition
+        for (const packet of this.fd.session.packets.slice(packetsBefore)) {
+          // Test if INFO packet contains rollback message
+          if ("status" in packet && packet.status === "INFO" && packet.message) {
+            const match = packet.message.match(antiRollbackDowngradeRegex)
+            if (match) {
+              const [, warnPartition, imageIndex, storedIndex] = match
+              this.rollbackDowngrade = true
+              this.logger.log(
+                `${warnPartition}: rollback index ${imageIndex} < stored ${storedIndex}`,
+              )
+            }
+          }
+        }
+      }
+
       sentBytes += split.bytes
       splits += 1
       this.logger.log(
