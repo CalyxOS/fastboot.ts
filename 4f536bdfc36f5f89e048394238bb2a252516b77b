@@ -52,6 +52,24 @@
       "parentUuid": "15fcd82f_c96886e3",
       "revId": "4f536bdfc36f5f89e048394238bb2a252516b77b",
       "serverId": "35266860-6252-469c-a67d-185064479fc0"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "6065cc69_c0341268",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000084
+      },
+      "writtenOn": "2026-08-27T14:35:02Z",
+      "side": 1,
+      "message": "oh, that change is the functionality that detects the rollback warning, which belongs in the library. Look out soon for a corresponding change in webinstall that uses it to display a message and prevent locking.",
+      "parentUuid": "9fb95ac5_cb491822",
+      "revId": "4f536bdfc36f5f89e048394238bb2a252516b77b",
+      "serverId": "35266860-6252-469c-a67d-185064479fc0"
     }
   ],
   "submitRequirementResults": [
