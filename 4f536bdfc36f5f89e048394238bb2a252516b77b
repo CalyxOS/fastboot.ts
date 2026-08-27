@@ -34,6 +34,24 @@
       "parentUuid": "a61dd44f_24e3ef50",
       "revId": "4f536bdfc36f5f89e048394238bb2a252516b77b",
       "serverId": "35266860-6252-469c-a67d-185064479fc0"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "9fb95ac5_cb491822",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000210
+      },
+      "writtenOn": "2026-08-27T13:15:04Z",
+      "side": 1,
+      "message": "my bad that comment should be for https://review.calyxos.org/c/CalyxOS/fastboot.ts/+/48585/1",
+      "parentUuid": "15fcd82f_c96886e3",
+      "revId": "4f536bdfc36f5f89e048394238bb2a252516b77b",
+      "serverId": "35266860-6252-469c-a67d-185064479fc0"
     }
   ]
 }
