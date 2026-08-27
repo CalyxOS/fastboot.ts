@@ -16,6 +16,24 @@
       "message": "Shouldn\u0027t this be done in the webinstaller and not the library project?",
       "revId": "4f536bdfc36f5f89e048394238bb2a252516b77b",
       "serverId": "35266860-6252-469c-a67d-185064479fc0"
+    },
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "15fcd82f_c96886e3",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000084
+      },
+      "writtenOn": "2026-08-27T13:01:45Z",
+      "side": 1,
+      "message": "This publishes the fastboot.ts package to a registry with the idea that the webinstaller can then use it instead of the version published to npm manually by me.  The webinstaller is already packaged as a docker image on gitlab\u0027s registry.",
+      "parentUuid": "a61dd44f_24e3ef50",
+      "revId": "4f536bdfc36f5f89e048394238bb2a252516b77b",
+      "serverId": "35266860-6252-469c-a67d-185064479fc0"
     }
   ]
 }
