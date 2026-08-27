@@ -1,0 +1,21 @@
+{
+  "comments": [
+    {
+      "unresolved": false,
+      "key": {
+        "uuid": "a61dd44f_24e3ef50",
+        "filename": "/PATCHSET_LEVEL",
+        "patchSetId": 1
+      },
+      "lineNbr": 0,
+      "author": {
+        "id": 1000210
+      },
+      "writtenOn": "2026-08-27T12:57:08Z",
+      "side": 1,
+      "message": "Shouldn\u0027t this be done in the webinstaller and not the library project?",
+      "revId": "4f536bdfc36f5f89e048394238bb2a252516b77b",
+      "serverId": "35266860-6252-469c-a67d-185064479fc0"
+    }
+  ]
+}
