@@ -312,7 +312,7 @@ export class FastbootClient {
   }
 
   async unlocked() {
-    if (MotorolaProducts.includes(await this.getVarCache("product"))) {
+    if (await this.isMotorolaProduct()) {
       return (await this.getVar("securestate")) === "flashing_unlocked"
     } else {
       return (await this.getVar("unlocked")) === "yes"
@@ -320,7 +320,7 @@ export class FastbootClient {
   }
 
   async locked() {
-    if (MotorolaProducts.includes(await this.getVarCache("product"))) {
+    if (await this.isMotorolaProduct()) {
       return (await this.getVar("securestate")) === "flashing_locked"
     } else {
       return (await this.getVar("unlocked")) === "no"
@@ -370,6 +370,10 @@ export class FastbootClient {
     }
 
     return data
+  }
+
+  async isMotorolaProduct(): Promise<boolean> {
+    return MotorolaProducts.includes(await this.getVarCache("product"))
   }
 
   static async create() {
